@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
             prepareUpdate();
             new UpdateTask(this, db_version).execute();
         } else {
+
             Intent intent = new Intent(this, PlayMedal.class);
             startActivity(intent);
             finish();

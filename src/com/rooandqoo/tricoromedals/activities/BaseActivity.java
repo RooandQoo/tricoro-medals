@@ -1,14 +1,26 @@
 
 package com.rooandqoo.tricoromedals.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
 import com.actionbarsherlock.R;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.rooandqoo.tricoromedals.utils.Constants;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class BaseActivity extends SherlockFragmentActivity {
     private int currentActivityId = 0;
@@ -17,6 +29,22 @@ public class BaseActivity extends SherlockFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Sherlock);
         super.onCreate(savedInstanceState);
+
+        SharedPreferences pref = getSharedPreferences(Constants.PREFERENCE_FILE, MODE_PRIVATE);
+
+        int appVersion = pref.getInt("APP_VERSION", 0);
+        int versionCode = 0;
+        try {
+            versionCode = getPackageManager().getPackageInfo(this.getPackageName(),
+                    PackageManager.GET_META_DATA).versionCode;
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if (appVersion < versionCode) {
+            showInformation();
+            pref.edit().putInt("APP_VERSION", versionCode).commit();
+        }
 
         currentActivityId = getIntent().getIntExtra("activity", 0);
 
@@ -45,11 +73,23 @@ public class BaseActivity extends SherlockFragmentActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.base, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            showActivity(0);
-        } else {
-            return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                showActivity(0);
+                break;
+            case R.id.menu_info:
+                showInformation();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
         }
         return true;
     }
@@ -90,4 +130,37 @@ public class BaseActivity extends SherlockFragmentActivity {
         }
     }
 
+    private void showInformation() {
+
+        String history = getHistory();
+
+        new AlertDialog.Builder(this).setTitle("インフォメーション").setMessage(history)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+
+                    }
+                }).create().show();
+    }
+
+    private String getHistory() {
+        InputStream is = getResources().openRawResource(R.raw.history);
+        BufferedReader br = null;
+        StringBuilder sb = new StringBuilder();
+        try {
+            br = new BufferedReader(new InputStreamReader(is));
+            String str;
+            while ((str = br.readLine()) != null) {
+                sb.append(str + "\n");
+            }
+            if (br != null)
+                br.close();
+            is.close();
+        } catch (Exception e) {
+
+        }
+        return sb.toString();
+    }
 }
