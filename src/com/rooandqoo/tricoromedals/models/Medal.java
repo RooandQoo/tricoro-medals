@@ -9,6 +9,16 @@ public class Medal {
     private String description;
     private int check; // 0 = false, 1 = true
 
+    public Medal() {
+
+    }
+
+    public Medal(int category, int color, String description) {
+        this.category = category;
+        this.color = color;
+        this.description = description;
+    }
+
     public String dump() {
         return "rowid:" + rowid + ", category:" + category + ", color:" + color + "desc:"
                 + description + "checked:" + check;

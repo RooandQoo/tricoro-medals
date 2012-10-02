@@ -4,6 +4,7 @@ package com.rooandqoo.tricoromedals.utils;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class MedalAdapter extends ArrayAdapter<Medal> {
         }
 
         Medal item = items.get(position);
+        Log.v("tricoro", item.dump());
         rowid = item.getRowid();
 
         switch (item.getColor()) {
@@ -86,10 +88,13 @@ public class MedalAdapter extends ArrayAdapter<Medal> {
                     checkedState = 1;
                 }
                 Medal medal = items.get(position);
+                medal.setCheck(checkedState);
+                Log.v("tricoro", medal.dump());
                 DatabaseHelper dbHelper = new DatabaseHelper(context);
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 MedalsDao medalsDao = new MedalsDao(db);
                 medalsDao.update(medal.getRowid(), checkedState);
+                db.close();
             }
 
         });

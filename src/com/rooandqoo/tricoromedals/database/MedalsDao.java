@@ -4,7 +4,6 @@ package com.rooandqoo.tricoromedals.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.rooandqoo.tricoromedals.models.Medal;
 
@@ -39,7 +38,6 @@ public class MedalsDao {
     }
 
     public int update(int rowid, int check) {
-        Log.v("tricoro", "rowid:" + rowid);
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_CHECK, check);

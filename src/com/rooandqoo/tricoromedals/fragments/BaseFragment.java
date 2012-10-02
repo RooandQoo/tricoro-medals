@@ -3,7 +3,6 @@ package com.rooandqoo.tricoromedals.fragments;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +39,6 @@ public class BaseFragment extends SherlockFragment {
         MedalsDao medalsDao = new MedalsDao(db);
 
         List<Medal> medals = medalsDao.findByCategory(category);
-        for (int i = 0; i < medals.size(); i++) {
-            Log.v("tricoro", medals.get(i).dump());
-        }
         MedalAdapter adapter = new MedalAdapter(this.getSherlockActivity(),
                 R.layout.list_item, medals);
 

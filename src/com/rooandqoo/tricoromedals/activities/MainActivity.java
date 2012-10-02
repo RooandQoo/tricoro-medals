@@ -15,6 +15,7 @@ import com.rooandqoo.tricoromedals.R;
 import com.rooandqoo.tricoromedals.database.DatabaseHelper;
 import com.rooandqoo.tricoromedals.utils.Constants;
 import com.rooandqoo.tricoromedals.utils.InitTask;
+import com.rooandqoo.tricoromedals.utils.UpdateTask;
 
 public class MainActivity extends Activity {
 
@@ -30,16 +31,26 @@ public class MainActivity extends Activity {
         SharedPreferences pref = getSharedPreferences(Constants.PREFERENCE_FILE, MODE_PRIVATE);
         int db_version = pref.getInt("VERSION", 0);
         if (db_version == 0) {
-            showDialog(DIALOG_PROGRESS);
+            prepareUpdate();
             init();
         }
         else if (db_version < Constants.NEWEST_DB_VERSION) {
-            // init();
+            prepareUpdate();
+            new UpdateTask(this, db_version).execute();
         } else {
             Intent intent = new Intent(this, PlayMedal.class);
             startActivity(intent);
             finish();
         }
+    }
+
+    private void prepareUpdate() {
+        showDialog(DIALOG_PROGRESS);
+
+        // 画面を縦で固定
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // スリープしないように
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     private void init() {
@@ -48,10 +59,6 @@ public class MainActivity extends Activity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         dbHelper.onUpgrade(db, 1, 1);
 
-        // 画面を縦で固定
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        // スリープしないように
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         new InitTask(this).execute();
     }
 
@@ -71,4 +78,5 @@ public class MainActivity extends Activity {
         }
         return null;
     }
+
 }

@@ -3,7 +3,6 @@ package com.rooandqoo.tricoromedals.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.actionbarsherlock.R;
@@ -56,7 +55,6 @@ public class BaseActivity extends SherlockFragmentActivity {
     }
 
     public void showActivity(long itemId) {
-        Log.v("debug", "current:" + currentActivityId + " itemId:" + itemId);
         Intent intent = null;
         if (currentActivityId != itemId) {
             switch ((int) itemId) {
