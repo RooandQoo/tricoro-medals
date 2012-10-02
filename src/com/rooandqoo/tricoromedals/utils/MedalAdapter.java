@@ -4,14 +4,12 @@ package com.rooandqoo.tricoromedals.utils;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.rooandqoo.tricoromedals.R;
@@ -55,7 +53,6 @@ public class MedalAdapter extends ArrayAdapter<Medal> {
         }
 
         Medal item = items.get(position);
-        Log.v("tricoro", item.dump());
         rowid = item.getRowid();
 
         switch (item.getColor()) {
@@ -79,25 +76,46 @@ public class MedalAdapter extends ArrayAdapter<Medal> {
             cb.setChecked(false);
         }
 
-        cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        cb.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onClick(View v) {
                 int checkedState = 0;
-                if (isChecked) {
+                if (((CheckBox) v).isChecked()) {
                     checkedState = 1;
                 }
                 Medal medal = items.get(position);
                 medal.setCheck(checkedState);
-                Log.v("tricoro", medal.dump());
                 DatabaseHelper dbHelper = new DatabaseHelper(context);
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 MedalsDao medalsDao = new MedalsDao(db);
                 medalsDao.update(medal.getRowid(), checkedState);
                 db.close();
-            }
 
+            }
         });
+
+        // cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        //
+        // @Override
+        // public void onCheckedChanged(CompoundButton buttonView, boolean
+        // isChecked) {
+        // int checkedState = 0;
+        // if (isChecked) {
+        // checkedState = 1;
+        // }
+        // Medal medal = items.get(position);
+        // medal.setCheck(checkedState);
+        // Log.v("tricoro", "checked changed");
+        // Log.v("tricoro", medal.dump());
+        // DatabaseHelper dbHelper = new DatabaseHelper(context);
+        // SQLiteDatabase db = dbHelper.getWritableDatabase();
+        // MedalsDao medalsDao = new MedalsDao(db);
+        // medalsDao.update(medal.getRowid(), checkedState);
+        // db.close();
+        // }
+        //
+        // });
 
         return view;
     }
