@@ -9,8 +9,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.actionbarsherlock.R;
 import com.actionbarsherlock.app.ActionBar;
@@ -141,10 +143,41 @@ public class BaseActivity extends SherlockFragmentActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         MedalsDao medalsDao = new MedalsDao(db);
 
+        int[] checkedMedalCount = new int[3];
+        int[] totalMedalCount = new int[3];
+
+        int checkedMedals = 0;
+        int totalMedals = 0;
+
         for (int i = 0; i < 3; i++) {
-            Log.v("tricoro", "取得数：" + medalsDao.countCheckedMedals(i));
-            Log.v("tricoro", "総数：" + medalsDao.countMedals(i));
+            checkedMedals += checkedMedalCount[i] = medalsDao.countCheckedMedals(i);
+            totalMedals += totalMedalCount[i] = medalsDao.countMedals(i);
         }
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogLayout = inflater.inflate(R.layout.dialog_medal_stats, null);
+
+        ((TextView) dialogLayout.findViewById(R.id.stat01)).setText(String.format("%d / %d",
+                checkedMedalCount[0], totalMedalCount[0]));
+        ((TextView) dialogLayout.findViewById(R.id.stat02)).setText(String.format("%d / %d",
+                checkedMedalCount[1], totalMedalCount[1]));
+        ((TextView) dialogLayout.findViewById(R.id.stat03)).setText(String.format("%d / %d",
+                checkedMedalCount[2], totalMedalCount[2]));
+        ((TextView) dialogLayout.findViewById(R.id.stat_total)).setText(String.format("%d / %d",
+                checkedMedals, totalMedals));
+
+        AlertDialog statisticDialog = new AlertDialog.Builder(this).setTitle("メダル取得状況")
+                .setView(dialogLayout)
+                .setNegativeButton("閉じる", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        dialog.cancel();
+                    }
+                }).create();
+        db.close();
+        statisticDialog.show();
     }
 
     private void showInformation() {
