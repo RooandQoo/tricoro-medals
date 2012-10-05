@@ -24,12 +24,11 @@ public class UpdateTask extends AsyncTask<Void, Void, Void> {
         return null;
     }
 
-    public void onPostExecute() {
+    protected void onPostExecute(Void result) {
         activity.progressDialog.dismiss();
         Intent intent = new Intent(activity, PlayMedal.class);
         activity.startActivity(intent);
         activity.finish();
-
     }
 
 }

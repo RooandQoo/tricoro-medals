@@ -72,6 +72,20 @@ public class DatabaseUtils {
                     medalsDao.insert(medal);
                 }
 
+            case 2:
+                numberOfMedals = 5;
+                newMedals = new Medal[numberOfMedals];
+
+                newMedals[0] = new Medal(16, 1, "DJPOINT13000");
+                newMedals[1] = new Medal(16, 1, "DJPOINT13500");
+                newMedals[2] = new Medal(16, 2, "DJPOINT14000");
+                newMedals[3] = new Medal(16, 2, "DJPOINT14500");
+                newMedals[4] = new Medal(16, 2, "DJPOINT15000");
+
+                for (Medal medal : newMedals) {
+                    medalsDao.insert(medal);
+                }
+
                 e.putInt("VERSION", Constants.NEWEST_DB_VERSION);
                 e.commit();
         }
