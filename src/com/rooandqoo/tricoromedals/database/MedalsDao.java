@@ -70,6 +70,20 @@ public class MedalsDao {
         return medals;
     }
 
+    public int countMedals(int color) {
+        String selection = "color = " + color;
+        Cursor cursor = db.query(TABLE_NAME, COLUMNS, selection, null, null, null, null);
+
+        return cursor.getCount();
+    }
+
+    public int countCheckedMedals(int color) {
+        String selection = "color = " + color + " and checked = 1";
+        Cursor cursor = db.query(TABLE_NAME, COLUMNS, selection, null, null, null, null);
+
+        return cursor.getCount();
+    }
+
     public int deleteFromName(String description) {
         return db.delete(TABLE_NAME, "description = '" + description + "'", null);
     }

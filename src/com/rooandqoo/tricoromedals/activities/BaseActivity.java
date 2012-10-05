@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.actionbarsherlock.R;
@@ -16,6 +18,8 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.rooandqoo.tricoromedals.database.DatabaseHelper;
+import com.rooandqoo.tricoromedals.database.MedalsDao;
 import com.rooandqoo.tricoromedals.utils.Constants;
 
 import java.io.BufferedReader;
@@ -88,6 +92,8 @@ public class BaseActivity extends SherlockFragmentActivity {
             case R.id.menu_info:
                 showInformation();
                 break;
+            case R.id.menu_count:
+                showMedalsInfo();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -127,6 +133,17 @@ public class BaseActivity extends SherlockFragmentActivity {
             }
             startActivity(intent);
             finish();
+        }
+    }
+
+    private void showMedalsInfo() {
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        MedalsDao medalsDao = new MedalsDao(db);
+
+        for (int i = 0; i < 3; i++) {
+            Log.v("tricoro", "取得数：" + medalsDao.countCheckedMedals(i));
+            Log.v("tricoro", "総数：" + medalsDao.countMedals(i));
         }
     }
 

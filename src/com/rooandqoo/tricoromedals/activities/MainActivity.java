@@ -38,7 +38,6 @@ public class MainActivity extends Activity {
             prepareUpdate();
             new UpdateTask(this, db_version).execute();
         } else {
-
             Intent intent = new Intent(this, PlayMedal.class);
             startActivity(intent);
             finish();
@@ -75,7 +74,6 @@ public class MainActivity extends Activity {
             progressDialog.setMessage("読み込み中…");
             progressDialog.setCancelable(false);
             return progressDialog;
-
         }
         return null;
     }
