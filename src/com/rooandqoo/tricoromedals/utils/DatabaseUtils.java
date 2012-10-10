@@ -86,6 +86,32 @@ public class DatabaseUtils {
                     medalsDao.insert(medal);
                 }
 
+            case 3:
+                numberOfMedals = 17;
+                newMedals = new Medal[numberOfMedals];
+
+                newMedals[0] = new Medal(19, 0, "今日のイチオシ10回コンプリート");
+                newMedals[1] = new Medal(19, 0, "今日のイチオシ15回コンプリート");
+                newMedals[2] = new Medal(20, 0, "アストランの輝き1-Nゲット");
+                newMedals[3] = new Medal(20, 0, "アストランの輝き2-Nゲット");
+                newMedals[4] = new Medal(20, 0, "アストランの輝き3-Nゲット");
+                newMedals[5] = new Medal(20, 0, "アストランの輝き4-Nゲット");
+                newMedals[6] = new Medal(20, 0, "アストランの輝き5-Nゲット");
+                newMedals[7] = new Medal(20, 0, "アストランの輝き1-Hゲット");
+                newMedals[8] = new Medal(20, 0, "アストランの輝き2-Hゲット");
+                newMedals[9] = new Medal(20, 0, "アストランの輝き3-Hゲット");
+                newMedals[10] = new Medal(20, 0, "アストランの輝き4-Hゲット");
+                newMedals[11] = new Medal(20, 0, "アストランの輝き5-Hゲット");
+                newMedals[12] = new Medal(20, 0, "アストランの輝き1-Aゲット");
+                newMedals[13] = new Medal(20, 0, "アストランの輝き2-Aゲット");
+                newMedals[14] = new Medal(20, 0, "アストランの輝き3-Aゲット");
+                newMedals[15] = new Medal(20, 0, "アストランの輝き4-Aゲット");
+                newMedals[16] = new Medal(20, 0, "アストランの輝き5-Aゲット");
+
+                for (Medal medal : newMedals) {
+                    medalsDao.insert(medal);
+                }
+
                 e.putInt("VERSION", Constants.NEWEST_DB_VERSION);
                 e.commit();
         }

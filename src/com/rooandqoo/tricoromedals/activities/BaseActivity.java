@@ -56,7 +56,7 @@ public class BaseActivity extends SherlockFragmentActivity {
 
         ActionBar actionBar = this.getSupportActionBar();
         String[] navigationItems = {
-                "プレー系", "クリア系", "スコア系", "ステップアップ系", "行脚系", "その他"
+                "プレー系", "クリア系", "スコア系", "ステップアップ系", "行脚系", "LEGEND CROSS", "その他"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, navigationItems);
@@ -127,8 +127,12 @@ public class BaseActivity extends SherlockFragmentActivity {
                     intent.putExtra("activity", 4);
                     break;
                 case 5:
-                    intent = new Intent(this, OtherMedal.class);
+                    intent = new Intent(this, LegendCross.class);
                     intent.putExtra("activity", 5);
+                    break;
+                case 6:
+                    intent = new Intent(this, OtherMedal.class);
+                    intent.putExtra("activity", 6);
                     break;
                 default:
                     break;
