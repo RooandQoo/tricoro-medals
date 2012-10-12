@@ -112,7 +112,7 @@ public class DatabaseUtils {
                     medalsDao.insert(medal);
                 }
 
-                e.putInt("VERSION", Constants.NEWEST_DB_VERSION);
+                e.putInt(Constants.PREF_DB_VERSION, Constants.NEWEST_DB_VERSION);
                 e.commit();
         }
 

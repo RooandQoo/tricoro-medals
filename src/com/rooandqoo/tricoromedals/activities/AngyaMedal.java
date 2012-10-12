@@ -37,9 +37,7 @@ public class AngyaMedal extends BaseActivity {
     public class AngyaCollectionPagerAdapter extends
             FragmentStatePagerAdapter {
 
-        String[] titles = {
-                "行脚", "地方制覇"
-        };
+        String[] titles = getResources().getStringArray(R.array.array_angya);
 
         public AngyaCollectionPagerAdapter(FragmentManager fm) {
             super(fm);

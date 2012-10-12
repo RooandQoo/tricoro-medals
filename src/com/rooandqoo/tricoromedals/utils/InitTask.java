@@ -46,7 +46,7 @@ public class InitTask extends AsyncTask<Void, Void, Void> {
         db.close();
         Editor e = activity.getSharedPreferences(Constants.PREFERENCE_FILE, activity.MODE_PRIVATE)
                 .edit();
-        e.putInt("VERSION", 1);
+        e.putInt(Constants.PREF_DB_VERSION, 1);
         e.commit();
 
         activity.progressDialog.dismiss();

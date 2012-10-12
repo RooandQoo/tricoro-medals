@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="array_category">
+        <item>@string/category_play</item>
+        <item>@string/category_clear</item>
+        <item>@string/category_score</item>
+        <item>@string/category_stepup</item>
+        <item>@string/category_angya</item>
+        <item>@string/category_legend</item>
+        <item>@string/category_other</item>
+    </string-array>
+    <string-array name="array_play">
+        <item>レベル別</item>
+        <item>NORMAL譜面</item>
+        <item>HYPER譜面</item>
+        <item>ANOTHER譜面</item>
+    </string-array>
+    <string-array name="array_clear">
+        <item>CLEAR</item>
+        <item>HARD CLEAR</item>
+        <item>EX HARD</item>
+        <item>FULL COMBO</item>
+    </string-array>
+    <string-array name="array_score">
+        <item>RANK A</item>
+        <item>RANK AA</item>
+        <item>RANK AAA</item>
+    </string-array>
+    <string-array name="array_stepup">
+        <item>1年</item>
+        <item>2年</item>
+        <item>3月</item>
+    </string-array>
+    <string-array name="array_angya">
+        <item>行脚</item>
+        <item>地方制覇</item>
+    </string-array>
+    <string-array name="array_legend">
+        <item>1-5</item>
+    </string-array>
+    <string-array name="array_other">
+        <item>DJ POINT</item>
+        <item>段位合格</item>
+        <item>ライバル挑戦状</item>
+        <item>今日のイチオシ</item>
+    </string-array>
+
+</resources>

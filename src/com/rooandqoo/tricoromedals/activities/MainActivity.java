@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
 
         SharedPreferences pref = getSharedPreferences(Constants.PREFERENCE_FILE, MODE_PRIVATE);
-        int db_version = pref.getInt("VERSION", 0);
+        int db_version = pref.getInt(Constants.PREF_DB_VERSION, 0);
         if (db_version == 0) {
             prepareUpdate();
             init();
@@ -71,7 +71,8 @@ public class MainActivity extends Activity {
         if (id == DIALOG_PROGRESS) {
             progressDialog = new ProgressDialog(this);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progressDialog.setMessage("読み込み中…");
+            progressDialog.setMessage(getResources().getString(
+                    R.string.dialog_message_loading));
             progressDialog.setCancelable(false);
             return progressDialog;
         }

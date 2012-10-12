@@ -41,9 +41,7 @@ public class ClearMedal extends BaseActivity {
     public class ClearCollectionPagerAdapter extends
             FragmentStatePagerAdapter {
 
-        String[] titles = {
-                "CLEAR", "HARD CLEAR", "EX HARD", "FULL COMBO"
-        };
+        String[] titles = getResources().getStringArray(R.array.array_clear);
 
         public ClearCollectionPagerAdapter(FragmentManager fm) {
             super(fm);

@@ -40,9 +40,7 @@ public class PlayMedal extends BaseActivity {
     public class PlayCollectionPagerAdapter extends
             FragmentStatePagerAdapter {
 
-        String[] titles = {
-                "レベル別", "NORMAL譜面", "HYPER譜面", "ANOTHER譜面"
-        };
+        String[] titles = getResources().getStringArray(R.array.array_play);
 
         public PlayCollectionPagerAdapter(FragmentManager fm) {
             super(fm);

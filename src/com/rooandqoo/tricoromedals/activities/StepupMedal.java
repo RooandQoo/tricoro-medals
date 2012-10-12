@@ -39,9 +39,7 @@ public class StepupMedal extends BaseActivity {
     public class StepupCollectionPagerAdapter extends
             FragmentStatePagerAdapter {
 
-        String[] titles = {
-                "1年", "2年", "3年"
-        };
+        String[] titles = getResources().getStringArray(R.array.array_stepup);
 
         public StepupCollectionPagerAdapter(FragmentManager fm) {
             super(fm);

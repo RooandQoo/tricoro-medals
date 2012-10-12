@@ -31,6 +31,14 @@ import java.io.InputStreamReader;
 public class BaseActivity extends SherlockFragmentActivity {
     private int currentActivityId = 0;
 
+    private static final int ACTIVITY_INDEX_PLAY = 0;
+    private static final int ACTIVITY_INDEX_CLEAR = 1;
+    private static final int ACTIVITY_INDEX_SCORE = 2;
+    private static final int ACTIVITY_INDEX_STEPUP = 3;
+    private static final int ACTIVITY_INDEX_ANGYA = 4;
+    private static final int ACTIVITY_INDEX_LEGEND = 5;
+    private static final int ACTIVITY_INDEX_OTHER = 6;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.Theme_Sherlock);
@@ -38,7 +46,7 @@ public class BaseActivity extends SherlockFragmentActivity {
 
         SharedPreferences pref = getSharedPreferences(Constants.PREFERENCE_FILE, MODE_PRIVATE);
 
-        int appVersion = pref.getInt("APP_VERSION", 0);
+        int appVersion = pref.getInt(Constants.PREF_APP_VERSION, 0);
         int versionCode = 0;
         try {
             versionCode = getPackageManager().getPackageInfo(this.getPackageName(),
@@ -49,15 +57,13 @@ public class BaseActivity extends SherlockFragmentActivity {
 
         if (appVersion < versionCode) {
             showInformation();
-            pref.edit().putInt("APP_VERSION", versionCode).commit();
+            pref.edit().putInt(Constants.PREF_APP_VERSION, versionCode).commit();
         }
 
-        currentActivityId = getIntent().getIntExtra("activity", 0);
+        currentActivityId = getIntent().getIntExtra(Constants.PARAM_ACTIVITY_INDEX, 0);
 
         ActionBar actionBar = this.getSupportActionBar();
-        String[] navigationItems = {
-                "プレー系", "クリア系", "スコア系", "ステップアップ系", "行脚系", "LEGEND CROSS", "その他"
-        };
+        String[] navigationItems = getResources().getStringArray(R.array.array_category);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, navigationItems);
 
@@ -108,31 +114,31 @@ public class BaseActivity extends SherlockFragmentActivity {
             switch ((int) itemId) {
                 case 0:
                     intent = new Intent(this, PlayMedal.class);
-                    intent.putExtra("activity", 0);
+                    intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_PLAY);
                     break;
                 case 1:
                     intent = new Intent(this, ClearMedal.class);
-                    intent.putExtra("activity", 1);
+                    intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_CLEAR);
                     break;
                 case 2:
                     intent = new Intent(this, ScoreMedal.class);
-                    intent.putExtra("activity", 2);
+                    intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_SCORE);
                     break;
                 case 3:
                     intent = new Intent(this, StepupMedal.class);
-                    intent.putExtra("activity", 3);
+                    intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_STEPUP);
                     break;
                 case 4:
                     intent = new Intent(this, AngyaMedal.class);
-                    intent.putExtra("activity", 4);
+                    intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_ANGYA);
                     break;
                 case 5:
                     intent = new Intent(this, LegendCross.class);
-                    intent.putExtra("activity", 5);
+                    intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_LEGEND);
                     break;
                 case 6:
                     intent = new Intent(this, OtherMedal.class);
-                    intent.putExtra("activity", 6);
+                    intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_OTHER);
                     break;
                 default:
                     break;
@@ -161,18 +167,21 @@ public class BaseActivity extends SherlockFragmentActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         View dialogLayout = inflater.inflate(R.layout.dialog_medal_stats, null);
 
-        ((TextView) dialogLayout.findViewById(R.id.stat01)).setText(String.format("%d / %d",
+        String statsString = getResources().getString(R.string.stats);
+
+        ((TextView) dialogLayout.findViewById(R.id.stat01)).setText(String.format(statsString,
                 checkedMedalCount[0], totalMedalCount[0]));
-        ((TextView) dialogLayout.findViewById(R.id.stat02)).setText(String.format("%d / %d",
+        ((TextView) dialogLayout.findViewById(R.id.stat02)).setText(String.format(statsString,
                 checkedMedalCount[1], totalMedalCount[1]));
-        ((TextView) dialogLayout.findViewById(R.id.stat03)).setText(String.format("%d / %d",
+        ((TextView) dialogLayout.findViewById(R.id.stat03)).setText(String.format(statsString,
                 checkedMedalCount[2], totalMedalCount[2]));
-        ((TextView) dialogLayout.findViewById(R.id.stat_total)).setText(String.format("%d / %d",
+        ((TextView) dialogLayout.findViewById(R.id.stat_total)).setText(String.format(statsString,
                 checkedMedals, totalMedals));
 
-        AlertDialog statisticDialog = new AlertDialog.Builder(this).setTitle("メダル取得状況")
+        AlertDialog statisticDialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.dialog_title_stats)
                 .setView(dialogLayout)
-                .setNegativeButton("閉じる", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -188,8 +197,9 @@ public class BaseActivity extends SherlockFragmentActivity {
 
         String history = getHistory();
 
-        new AlertDialog.Builder(this).setTitle("インフォメーション").setMessage(history)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this).setTitle(R.string.dialog_title_info)
+                .setMessage(history)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

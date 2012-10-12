@@ -11,7 +11,7 @@ import com.rooandqoo.tricoromedals.R;
 import com.rooandqoo.tricoromedals.fragments.BaseFragment;
 
 public class ScoreMedal extends BaseActivity {
-    
+
     ScoreCollectionPagerAdapter scoreCollectionPagerAdapter;
     ViewPager viewPager;
 
@@ -39,9 +39,7 @@ public class ScoreMedal extends BaseActivity {
     public class ScoreCollectionPagerAdapter extends
             FragmentStatePagerAdapter {
 
-        String[] titles = {
-                "RANK A", "RANK AA", "RANK AAA"
-        };
+        String[] titles = getResources().getStringArray(R.array.array_score);
 
         public ScoreCollectionPagerAdapter(FragmentManager fm) {
             super(fm);

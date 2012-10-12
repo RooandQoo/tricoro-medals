@@ -35,9 +35,7 @@ public class LegendCross extends BaseActivity {
     public class LCCollectionPagerAdapter extends
             FragmentStatePagerAdapter {
 
-        String[] titles = {
-                "1-5"
-        };
+        String[] titles = getResources().getStringArray(R.array.array_legend);
 
         public LCCollectionPagerAdapter(FragmentManager fm) {
             super(fm);
