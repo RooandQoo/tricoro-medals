@@ -4,6 +4,7 @@ package com.rooandqoo.tricoromedals.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.rooandqoo.tricoromedals.models.Medal;
 
@@ -45,12 +46,38 @@ public class MedalsDao {
         return db.update(TABLE_NAME, values, whereClause, null);
     }
 
+    public int updateFromDesc(String description, int check) {
+        Log.v("debug", "update");
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_CHECK, check);
+        String whereClause = "description = '" + description + "'";
+
+        return db.update(TABLE_NAME, values, whereClause, null);
+    }
+
     public int fixMedalFromDesc(String description) {
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_DESC, description);
         String whereClause = "description = " + "'" + description.replace("'", "''") + "'";
         return db.update(TABLE_NAME, values, whereClause, null);
+    }
+
+    public List<Medal> findAll() {
+        List<Medal> medals = new ArrayList<Medal>();
+        Cursor cursor = db.query(TABLE_NAME, COLUMNS, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+
+            Medal medal = new Medal();
+            medal.setRowid(cursor.getInt(0));
+            medal.setCategory(cursor.getInt(1));
+            medal.setColor(cursor.getInt(2));
+            medal.setDescription(cursor.getString(3));
+            medal.setCheck(cursor.getInt(4));
+            medals.add(medal);
+        }
+        return medals;
     }
 
     public List<Medal> findByCategory(int category) {
@@ -87,4 +114,5 @@ public class MedalsDao {
     public int deleteFromName(String description) {
         return db.delete(TABLE_NAME, "description = '" + description + "'", null);
     }
+
 }

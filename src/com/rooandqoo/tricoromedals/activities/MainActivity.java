@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.WindowManager;
 
 import com.rooandqoo.tricoromedals.R;
@@ -16,6 +17,8 @@ import com.rooandqoo.tricoromedals.database.DatabaseHelper;
 import com.rooandqoo.tricoromedals.utils.Constants;
 import com.rooandqoo.tricoromedals.utils.InitTask;
 import com.rooandqoo.tricoromedals.utils.UpdateTask;
+
+import java.io.File;
 
 public class MainActivity extends Activity {
 
@@ -27,6 +30,19 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        // ディレクトリ生成
+        String filePath = Environment.getExternalStorageDirectory() + File.separator
+                + Constants.DIR_NAME;
+        File dir = new File(filePath);
+
+        try {
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
 
         SharedPreferences pref = getSharedPreferences(Constants.PREFERENCE_FILE, MODE_PRIVATE);
         int db_version = pref.getInt(Constants.PREF_DB_VERSION, 0);

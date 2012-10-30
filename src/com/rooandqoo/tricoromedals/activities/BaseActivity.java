@@ -2,17 +2,22 @@
 package com.rooandqoo.tricoromedals.activities;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.R;
 import com.actionbarsherlock.app.ActionBar;
@@ -22,9 +27,12 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.rooandqoo.tricoromedals.database.DatabaseHelper;
 import com.rooandqoo.tricoromedals.database.MedalsDao;
+import com.rooandqoo.tricoromedals.utils.BackupTask;
 import com.rooandqoo.tricoromedals.utils.Constants;
+import com.rooandqoo.tricoromedals.utils.RestoreTask;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -38,6 +46,10 @@ public class BaseActivity extends SherlockFragmentActivity {
     private static final int ACTIVITY_INDEX_ANGYA = 4;
     private static final int ACTIVITY_INDEX_LEGEND = 5;
     private static final int ACTIVITY_INDEX_OTHER = 6;
+
+    private AlertDialog backupDialog;
+    private AlertDialog restoreDialog;
+    public ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +94,39 @@ public class BaseActivity extends SherlockFragmentActivity {
         if (currentActivityId != 0) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        backupDialog = new AlertDialog.Builder(this).setTitle(R.string.title_backup)
+                .setMessage(R.string.msg_backup)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        backup();
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).create();
+
+        restoreDialog = new AlertDialog.Builder(this).setTitle(R.string.title_restore)
+                .setMessage(R.string.msg_restore)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        restore();
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).create();
+
     }
 
     @Override
@@ -102,6 +147,13 @@ public class BaseActivity extends SherlockFragmentActivity {
                 break;
             case R.id.menu_count:
                 showMedalsInfo();
+                break;
+            case R.id.menu_backup:
+                backupDialog.show();
+                break;
+            case R.id.menu_restore:
+                restoreDialog.show();
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -227,4 +279,41 @@ public class BaseActivity extends SherlockFragmentActivity {
         }
         return sb.toString();
     }
+
+    private void backup() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage(getResources().getString(R.string.making_backup));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        // 画面を縦で固定
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // スリープしないように
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        new BackupTask(this).execute();
+    }
+
+    private void restore() {
+
+        String filePath = Environment.getExternalStorageDirectory() + File.separator
+                + Constants.DIR_NAME + File.separator + Constants.FILE_NAME;
+        File backupFile = new File(filePath);
+        if (!backupFile.exists()) {
+            Toast.makeText(this, R.string.no_backup_file, Toast.LENGTH_LONG).show();
+            return;
+        }
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage(getResources().getString(R.string.restore));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        // 画面を縦で固定
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // スリープしないように
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        (new RestoreTask(this)).execute();
+    }
+
 }

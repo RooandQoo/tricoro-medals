@@ -14,4 +14,17 @@
     <string name="dialog_title_info">インフォメーション</string>
     <string name="dialog_title_stats">メダル取得情報</string>
     <string name="stats">%1$d / %2$d</string>
+    
+    <string name="title_backup">バックアップ</string>
+    <string name="title_restore">リストア</string>
+    <string name="msg_backup">バックアップファイルを作成します。よろしいですか？</string>
+    <string name="msg_restore">バックアップファイルから復元を行います。よろしいですか？</string>
+    <string name="making_backup">バックアップ作成中…</string>
+    <string name="making_backup_fin">バックアップの作成が終了しました</string>
+    <string name="restore">復元中…</string>
+    <string name="restore_fin">復元が完了しました</string>
+    <string name="no_backup_file">バックアップファイルが見つかりませんでした。 \n 
+    SDカードの「TRICORO_MEDALS」ディレクトリ内に \n
+    「tricoro_medals.txt」ファイルを置いてください。 \n
+    (メニュー→バックアップ で作成されます) </string>
 </resources>
