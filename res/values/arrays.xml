@@ -38,6 +38,9 @@
     </string-array>
     <string-array name="array_legend">
         <item>1-5</item>
+        <item>6-12</item>
+        <item>BOSS(A)</item>
+        <item>BOSS(H)</item>
     </string-array>
     <string-array name="array_other">
         <item>DJ POINT</item>

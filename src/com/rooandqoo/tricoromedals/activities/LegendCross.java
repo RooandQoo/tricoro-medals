@@ -16,6 +16,9 @@ public class LegendCross extends BaseActivity {
     ViewPager viewPager;
 
     BaseFragment oneToFiveFragment;
+    BaseFragment sixToTwelveFragment;
+    BaseFragment redBossAnotherFragment;
+    BaseFragment redBossHyperFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,9 @@ public class LegendCross extends BaseActivity {
         setContentView(R.layout.lc_medal);
 
         oneToFiveFragment = new BaseFragment(20);
+        sixToTwelveFragment = new BaseFragment(21);
+        redBossAnotherFragment = new BaseFragment(22);
+        redBossHyperFragment = new BaseFragment(23);
 
         legendCrossCollectionPagerAdapter =
                 new LCCollectionPagerAdapter(
@@ -46,13 +52,19 @@ public class LegendCross extends BaseActivity {
             switch (i) {
                 case 0:
                     return oneToFiveFragment;
+                case 1:
+                    return sixToTwelveFragment;
+                case 2:
+                    return redBossAnotherFragment;
+                case 3:
+                    return redBossHyperFragment;
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 1;
+            return titles.length;
         }
 
         @Override
