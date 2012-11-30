@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="actionbar">#464241</color>
+    <color name="strap_general">#989898</color>
+    <color name="strap_red">#e60023</color>
+    <color name="strap_yellow">#fff318</color>
+    <color name="strap_blue">#00bdff</color>
+</resources>

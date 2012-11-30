@@ -10,6 +10,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -88,6 +89,8 @@ public class BaseActivity extends SherlockFragmentActivity {
             }
         });
 
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources()
+                .getColor(R.color.actionbar)));
         actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         actionBar.setSelectedNavigationItem(currentActivityId);
