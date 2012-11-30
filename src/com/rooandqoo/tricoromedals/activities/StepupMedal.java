@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.rooandqoo.tricoromedals.R;
 import com.rooandqoo.tricoromedals.fragments.BaseFragment;
+import com.rooandqoo.tricoromedals.utils.Constants;
 
 public class StepupMedal extends BaseActivity {
 
@@ -25,9 +26,9 @@ public class StepupMedal extends BaseActivity {
 
         setContentView(R.layout.stepup_medal);
 
-        classOneFragment = new BaseFragment(11);
-        classTwoFragment = new BaseFragment(12);
-        classThreeFragment = new BaseFragment(13);
+        classOneFragment = new BaseFragment(Constants.MEDAL_CATEGORY_SU_1);
+        classTwoFragment = new BaseFragment(Constants.MEDAL_CATEGORY_SU_2);
+        classThreeFragment = new BaseFragment(Constants.MEDAL_CATEGORY_SU_3);
 
         stepupCollectionPagerAdapter =
                 new StepupCollectionPagerAdapter(
@@ -60,7 +61,7 @@ public class StepupMedal extends BaseActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return titles.length;
         }
 
         @Override

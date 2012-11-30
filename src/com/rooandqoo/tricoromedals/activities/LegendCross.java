@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.rooandqoo.tricoromedals.R;
 import com.rooandqoo.tricoromedals.fragments.BaseFragment;
+import com.rooandqoo.tricoromedals.utils.Constants;
 
 public class LegendCross extends BaseActivity {
 
@@ -19,6 +20,7 @@ public class LegendCross extends BaseActivity {
     BaseFragment sixToTwelveFragment;
     BaseFragment redBossAnotherFragment;
     BaseFragment redBossHyperFragment;
+    BaseFragment redBossNormalFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,10 +28,11 @@ public class LegendCross extends BaseActivity {
 
         setContentView(R.layout.lc_medal);
 
-        oneToFiveFragment = new BaseFragment(20);
-        sixToTwelveFragment = new BaseFragment(21);
-        redBossAnotherFragment = new BaseFragment(22);
-        redBossHyperFragment = new BaseFragment(23);
+        oneToFiveFragment = new BaseFragment(Constants.MEDAL_CATEGORY_LEGEND_1);
+        sixToTwelveFragment = new BaseFragment(Constants.MEDAL_CATEGORY_LEGEND_2);
+        redBossAnotherFragment = new BaseFragment(Constants.MEDAL_CATEGORY_LEGEND_3);
+        redBossHyperFragment = new BaseFragment(Constants.MEDAL_CATEGORY_LEGEND_4);
+        redBossNormalFragment = new BaseFragment(Constants.MEDAL_CATEGORY_LEGEND_5);
 
         legendCrossCollectionPagerAdapter =
                 new LCCollectionPagerAdapter(
@@ -58,6 +61,8 @@ public class LegendCross extends BaseActivity {
                     return redBossAnotherFragment;
                 case 3:
                     return redBossHyperFragment;
+                case 4:
+                    return redBossNormalFragment;
             }
             return null;
         }

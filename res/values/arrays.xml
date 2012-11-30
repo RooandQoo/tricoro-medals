@@ -41,12 +41,14 @@
         <item>6-12</item>
         <item>BOSS(A)</item>
         <item>BOSS(H)</item>
+        <item>BOSS(N)</item>
     </string-array>
     <string-array name="array_other">
         <item>DJ POINT</item>
         <item>段位合格</item>
         <item>ライバル挑戦状</item>
         <item>今日のイチオシ</item>
+        <item>WEEKLY</item>
     </string-array>
 
 </resources>

@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.rooandqoo.tricoromedals.R;
 import com.rooandqoo.tricoromedals.fragments.BaseFragment;
+import com.rooandqoo.tricoromedals.utils.Constants;
 
 public class ClearMedal extends BaseActivity {
 
@@ -26,10 +27,10 @@ public class ClearMedal extends BaseActivity {
 
         setContentView(R.layout.clear_medal);
 
-        clearFragment = new BaseFragment(4);
-        hardClearFragment = new BaseFragment(5);
-        exHardFragment = new BaseFragment(6);
-        fullComboFragment = new BaseFragment(7);
+        clearFragment = new BaseFragment(Constants.MEDAL_CATEGORY_CLEAR);
+        hardClearFragment = new BaseFragment(Constants.MEDAL_CATEGORY_HARD_CLEAR);
+        exHardFragment = new BaseFragment(Constants.MEDAL_CATEGORY_EXHARD);
+        fullComboFragment = new BaseFragment(Constants.MEDAL_CATEGORY_FULLCOMBO);
 
         clearCollectionPagerAdapter =
                 new ClearCollectionPagerAdapter(
@@ -64,7 +65,7 @@ public class ClearMedal extends BaseActivity {
 
         @Override
         public int getCount() {
-            return 4;
+            return titles.length;
         }
 
         @Override

@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.rooandqoo.tricoromedals.R;
 import com.rooandqoo.tricoromedals.fragments.BaseFragment;
+import com.rooandqoo.tricoromedals.utils.Constants;
 
 public class ScoreMedal extends BaseActivity {
 
@@ -25,9 +26,9 @@ public class ScoreMedal extends BaseActivity {
 
         setContentView(R.layout.score_medal);
 
-        rankAFragment = new BaseFragment(8);
-        rankAAFragment = new BaseFragment(9);
-        rankAAAFragment = new BaseFragment(10);
+        rankAFragment = new BaseFragment(Constants.MEDAL_CATEGORY_DJLV_A);
+        rankAAFragment = new BaseFragment(Constants.MEDAL_CATEGORY_DJLV_AA);
+        rankAAAFragment = new BaseFragment(Constants.MEDAL_CATEGORY_DJLV_AAA);
 
         scoreCollectionPagerAdapter =
                 new ScoreCollectionPagerAdapter(
@@ -60,7 +61,7 @@ public class ScoreMedal extends BaseActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return titles.length;
         }
 
         @Override

@@ -3,7 +3,7 @@ package com.rooandqoo.tricoromedals.utils;
 
 public class Constants {
 
-    public static int NEWEST_DB_VERSION = 6; // 最新のDBバージョン
+    public static int NEWEST_DB_VERSION = 7; // 最新のDBバージョン
     public static String PREFERENCE_FILE;
 
     public static String DIR_NAME = "TRICORO_MEDALS";
@@ -41,4 +41,6 @@ public class Constants {
     public static int MEDAL_CATEGORY_LEGEND_2 = 21;
     public static int MEDAL_CATEGORY_LEGEND_3 = 22;
     public static int MEDAL_CATEGORY_LEGEND_4 = 23;
+    public static int MEDAL_CATEGORY_LEGEND_5 = 24;
+    public static int MEDAL_CATEGORY_WEEKLY = 25;
 }

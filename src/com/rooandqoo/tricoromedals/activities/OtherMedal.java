@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.rooandqoo.tricoromedals.R;
 import com.rooandqoo.tricoromedals.fragments.BaseFragment;
+import com.rooandqoo.tricoromedals.utils.Constants;
 
 public class OtherMedal extends BaseActivity {
 
@@ -19,6 +20,7 @@ public class OtherMedal extends BaseActivity {
     BaseFragment classFragment;
     BaseFragment challengeFragment;
     BaseFragment recommendFragment;
+    BaseFragment weeklyFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,10 +28,11 @@ public class OtherMedal extends BaseActivity {
 
         setContentView(R.layout.other_medal);
 
-        djpFragment = new BaseFragment(16);
-        classFragment = new BaseFragment(17);
-        challengeFragment = new BaseFragment(18);
-        recommendFragment = new BaseFragment(19);
+        djpFragment = new BaseFragment(Constants.MEDAL_CATEGORY_DJP);
+        classFragment = new BaseFragment(Constants.MEDAL_CATEGORY_CLASS);
+        challengeFragment = new BaseFragment(Constants.MEDAL_CATEGORY_RIVAL);
+        recommendFragment = new BaseFragment(Constants.MEDAL_CATEGORY_RECOMMEND);
+        weeklyFragment = new BaseFragment(Constants.MEDAL_CATEGORY_WEEKLY);
 
         otherCollectionPagerAdapter =
                 new OtherCollectionPagerAdapter(
@@ -41,9 +44,7 @@ public class OtherMedal extends BaseActivity {
     public class OtherCollectionPagerAdapter extends
             FragmentStatePagerAdapter {
 
-        String[] titles = {
-                "DJ POINT", "段位合格", "ライバル挑戦状", "今日のイチオシ"
-        };
+        String[] titles = getResources().getStringArray(R.array.array_other);
 
         public OtherCollectionPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -60,13 +61,15 @@ public class OtherMedal extends BaseActivity {
                     return challengeFragment;
                 case 3:
                     return recommendFragment;
+                case 4:
+                    return weeklyFragment;
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 4;
+            return titles.length;
         }
 
         @Override

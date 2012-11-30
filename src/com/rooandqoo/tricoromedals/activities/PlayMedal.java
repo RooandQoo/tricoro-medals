@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.rooandqoo.tricoromedals.R;
 import com.rooandqoo.tricoromedals.fragments.BaseFragment;
+import com.rooandqoo.tricoromedals.utils.Constants;
 
 public class PlayMedal extends BaseActivity {
     PlayCollectionPagerAdapter playCollectionPagerAdapter;
@@ -25,10 +26,10 @@ public class PlayMedal extends BaseActivity {
 
         setContentView(R.layout.play_medal);
 
-        playLevelFragment = new BaseFragment(0);
-        playNormalFragment = new BaseFragment(1);
-        playHyperFragment = new BaseFragment(2);
-        playAnotherFragment = new BaseFragment(3);
+        playLevelFragment = new BaseFragment(Constants.MEDAL_CATEGORY_LV_PLAY);
+        playNormalFragment = new BaseFragment(Constants.MEDAL_CATEGORY_NORMAL_PLAY);
+        playHyperFragment = new BaseFragment(Constants.MEDAL_CATEGORY_HYPER_PLAY);
+        playAnotherFragment = new BaseFragment(Constants.MEDAL_CATEGORY_ANOTHER_PLAY);
 
         playCollectionPagerAdapter =
                 new PlayCollectionPagerAdapter(
@@ -63,7 +64,7 @@ public class PlayMedal extends BaseActivity {
 
         @Override
         public int getCount() {
-            return 4;
+            return titles.length;
         }
 
         @Override

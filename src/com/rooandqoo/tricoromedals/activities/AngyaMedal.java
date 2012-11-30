@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.rooandqoo.tricoromedals.R;
 import com.rooandqoo.tricoromedals.fragments.BaseFragment;
+import com.rooandqoo.tricoromedals.utils.Constants;
 
 public class AngyaMedal extends BaseActivity {
 
@@ -24,8 +25,8 @@ public class AngyaMedal extends BaseActivity {
 
         setContentView(R.layout.angya_medal);
 
-        visitFragment = new BaseFragment(14);
-        completeFragment = new BaseFragment(15);
+        visitFragment = new BaseFragment(Constants.MEDAL_CATEGORY_ANGYA);
+        completeFragment = new BaseFragment(Constants.MEDAL_CATEGORY_ANGYA_COMP);
 
         angyaCollectionPagerAdapter =
                 new AngyaCollectionPagerAdapter(
@@ -56,7 +57,7 @@ public class AngyaMedal extends BaseActivity {
 
         @Override
         public int getCount() {
-            return 2;
+            return titles.length;
         }
 
         @Override

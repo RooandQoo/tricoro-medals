@@ -158,7 +158,7 @@ public class DatabaseUtils {
                 newMedals[1] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "今日のイチオシ30回コンプリート");
                 newMedals[2] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "今日のイチオシ35回コンプリート");
                 newMedals[3] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_2, 1, "アストランの輝き11-Aゲット");
-                newMedals[4] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_2, 2, "アストランの輝き11-Aゲット");
+                newMedals[4] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_2, 2, "アストランの輝き12-Aゲット");
                 newMedals[5] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_2, 1, "アストランの輝き11-Hゲット");
                 newMedals[6] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_2, 2, "アストランの輝き12-Hゲット");
                 newMedals[7] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_3, 1, "REDボス 11-A 撃破");
@@ -179,6 +179,37 @@ public class DatabaseUtils {
                 for (Medal medal : newMedals) {
                     medalsDao.insert(medal);
                 }
+
+            case 6:
+
+                numberOfMedals = 21;
+                newMedals = new Medal[numberOfMedals];
+
+                newMedals[0] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "今日のイチオシ40回コンプリート");
+                newMedals[1] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "今日のイチオシ45回コンプリート");
+                newMedals[2] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "今日のイチオシ50回コンプリート");
+                newMedals[3] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "今日のイチオシ55回コンプリート");
+                newMedals[4] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "今日のイチオシ60回コンプリート");
+                newMedals[5] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 1, "今日のイチオシ65回コンプリート");
+
+                newMedals[6] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_2, 1, "アストランの輝き11-Nゲット");
+                newMedals[7] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_2, 2, "アストランの輝き12-Nゲット");
+                newMedals[8] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 0, "REDボス 1-N 撃破");
+                newMedals[9] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 0, "REDボス 2-N 撃破");
+                newMedals[10] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 0, "REDボス 3-N 撃破");
+                newMedals[11] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 0, "REDボス 4-N 撃破");
+                newMedals[12] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 0, "REDボス 5-N 撃破");
+                newMedals[13] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 0, "REDボス 6-N 撃破");
+                newMedals[14] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 0, "REDボス 7-N 撃破");
+                newMedals[15] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 0, "REDボス 8-N 撃破");
+                newMedals[16] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 0, "REDボス 9-N 撃破");
+                newMedals[17] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 0, "REDボス 10-N 撃破");
+                newMedals[18] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 1, "REDボス 11-N 撃破");
+                newMedals[19] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 2, "REDボス 12-N 撃破");
+
+                newMedals[20] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "WEEKLY楽曲1曲プレー");
+                newMedals[21] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "WEEKLY楽曲3曲プレー");
+
                 e.putInt(Constants.PREF_DB_VERSION, Constants.NEWEST_DB_VERSION);
                 e.commit();
                 break;
