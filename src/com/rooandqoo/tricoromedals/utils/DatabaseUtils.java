@@ -182,7 +182,7 @@ public class DatabaseUtils {
 
             case 6:
 
-                numberOfMedals = 21;
+                numberOfMedals = 22;
                 newMedals = new Medal[numberOfMedals];
 
                 newMedals[0] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "今日のイチオシ40回コンプリート");
@@ -207,8 +207,63 @@ public class DatabaseUtils {
                 newMedals[18] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 1, "REDボス 11-N 撃破");
                 newMedals[19] = new Medal(Constants.MEDAL_CATEGORY_LEGEND_5, 2, "REDボス 12-N 撃破");
 
-                newMedals[20] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "WEEKLY楽曲1曲プレー");
-                newMedals[21] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 0, "WEEKLY楽曲3曲プレー");
+                newMedals[20] = new Medal(Constants.MEDAL_CATEGORY_WEEKLY, 0, "WEEKLY楽曲1曲プレー");
+                newMedals[21] = new Medal(Constants.MEDAL_CATEGORY_WEEKLY, 0, "WEEKLY楽曲3曲プレー");
+
+                for (Medal medal : newMedals) {
+                    medalsDao.insert(medal);
+                }
+
+            case 7:
+
+                numberOfMedals = 41;
+                newMedals = new Medal[numberOfMedals];
+
+                newMedals[0] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 1, "今日のイチオシ70回コンプリート");
+                newMedals[1] = new Medal(Constants.MEDAL_CATEGORY_RECOMMEND, 1, "今日のイチオシ75回コンプリート");
+                newMedals[2] = new Medal(Constants.MEDAL_CATEGORY_WEEKLY, 0, "WEEKLY楽曲5曲プレー");
+                newMedals[3] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "KEY PROGRAM「α」");
+                newMedals[4] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "KEY PROGRAM「β」");
+                newMedals[5] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "KEY PROGRAM「γ」");
+                newMedals[6] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "KEY PROGRAM「δ」");
+                newMedals[7] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "KEY PROGRAM「ε」");
+                newMedals[8] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "KEY PROGRAM「ι」");
+                newMedals[9] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "KEY PROGRAM「λ」");
+                newMedals[10] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "WEAPON「3WAY」");
+                newMedals[11] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "BLUEボス 1-N 解禁");
+                newMedals[12] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "BLUEボス 1-H 解禁");
+                newMedals[13] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "BLUEボス 1-A 解禁");
+                newMedals[14] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "BLUEボス 2-N 解禁");
+                newMedals[15] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "BLUEボス 2-H 解禁");
+                newMedals[16] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 0, "BLUEボス 2-A 解禁");
+                newMedals[17] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 1, "BLUEボス 3-N 解禁");
+                newMedals[18] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 1, "BLUEボス 3-H 解禁");
+                newMedals[19] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 2, "BLUEボス 3-A 解禁");
+                newMedals[20] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 1, "KEY COMPLETE");
+                newMedals[21] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_1, 1, "SECTOR Aクリア");
+                newMedals[22] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 0, "WEAPON「LASER」");
+                newMedals[23] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 0, "WEAPON「BOMB」");
+                newMedals[24] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 0, "BLUEボス 4-N 解禁");
+                newMedals[25] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "BLUEボス 4-H 解禁");
+                newMedals[26] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "BLUEボス 4-A 解禁");
+                newMedals[27] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "BLUEボス 5-N 解禁");
+                newMedals[28] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "BLUEボス 5-H 解禁");
+                newMedals[29] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "BLUEボス 5-A 解禁");
+                newMedals[30] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "BLUEボス 6-N 解禁");
+                newMedals[31] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "BLUEボス 6-H 解禁");
+                newMedals[32] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "BLUEボス 6-A 解禁");
+                newMedals[33] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "BLUEボス 7-N 解禁");
+                newMedals[34] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "BLUEボス 7-H 解禁");
+                newMedals[35] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 2, "BLUEボス 7-A 解禁");
+                newMedals[36] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "WEAPON COMPLETE");
+                newMedals[37] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "CODE LEVEL MAX");
+                newMedals[38] = new Medal(Constants.MEDAL_CATEGORY_OMEGA_2, 1, "SECTOR Bクリア");
+                newMedals[39] = new Medal(Constants.MEDAL_CATEGORY_CLASS, 1, "九段合格");
+                newMedals[40] = new Medal(Constants.MEDAL_CATEGORY_CLASS, 2, "十段合格");
+
+                for (Medal medal : newMedals) {
+                    medalsDao.insert(medal);
+                }
 
                 e.putInt(Constants.PREF_DB_VERSION, Constants.NEWEST_DB_VERSION);
                 e.commit();
