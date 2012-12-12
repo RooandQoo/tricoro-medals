@@ -8,6 +8,7 @@
         <item>@string/category_stepup</item>
         <item>@string/category_angya</item>
         <item>@string/category_legend</item>
+        <item>@string/category_omega</item>
         <item>@string/category_other</item>
     </string-array>
     <string-array name="array_play">
@@ -42,6 +43,10 @@
         <item>BOSS(A)</item>
         <item>BOSS(H)</item>
         <item>BOSS(N)</item>
+    </string-array>
+    <string-array name="array_omega">
+        <item>SECTOR A</item>
+        <item>SECTOR B</item>
     </string-array>
     <string-array name="array_other">
         <item>DJ POINT</item>

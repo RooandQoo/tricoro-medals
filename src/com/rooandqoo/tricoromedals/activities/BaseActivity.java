@@ -46,7 +46,8 @@ public class BaseActivity extends SherlockFragmentActivity {
     private static final int ACTIVITY_INDEX_STEPUP = 3;
     private static final int ACTIVITY_INDEX_ANGYA = 4;
     private static final int ACTIVITY_INDEX_LEGEND = 5;
-    private static final int ACTIVITY_INDEX_OTHER = 6;
+    private static final int ACTIVITY_INDEX_OMEGA = 6;
+    private static final int ACTIVITY_INDEX_OTHER = 7;
 
     private AlertDialog backupDialog;
     private AlertDialog restoreDialog;
@@ -167,31 +168,35 @@ public class BaseActivity extends SherlockFragmentActivity {
         Intent intent = null;
         if (currentActivityId != itemId) {
             switch ((int) itemId) {
-                case 0:
+                case ACTIVITY_INDEX_PLAY:
                     intent = new Intent(this, PlayMedal.class);
                     intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_PLAY);
                     break;
-                case 1:
+                case ACTIVITY_INDEX_CLEAR:
                     intent = new Intent(this, ClearMedal.class);
                     intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_CLEAR);
                     break;
-                case 2:
+                case ACTIVITY_INDEX_SCORE:
                     intent = new Intent(this, ScoreMedal.class);
                     intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_SCORE);
                     break;
-                case 3:
+                case ACTIVITY_INDEX_STEPUP:
                     intent = new Intent(this, StepupMedal.class);
                     intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_STEPUP);
                     break;
-                case 4:
+                case ACTIVITY_INDEX_ANGYA:
                     intent = new Intent(this, AngyaMedal.class);
                     intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_ANGYA);
                     break;
-                case 5:
+                case ACTIVITY_INDEX_LEGEND:
                     intent = new Intent(this, LegendCross.class);
                     intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_LEGEND);
                     break;
-                case 6:
+                case ACTIVITY_INDEX_OMEGA:
+                    intent = new Intent(this, OmegaAttack.class);
+                    intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_OMEGA);
+                    break;
+                case ACTIVITY_INDEX_OTHER:
                     intent = new Intent(this, OtherMedal.class);
                     intent.putExtra(Constants.PARAM_ACTIVITY_INDEX, ACTIVITY_INDEX_OTHER);
                     break;

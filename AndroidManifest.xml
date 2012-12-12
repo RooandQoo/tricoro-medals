@@ -20,6 +20,7 @@
         <activity android:name=".activities.StepupMedal" android:screenOrientation="portrait" />
         <activity android:name=".activities.AngyaMedal" android:screenOrientation="portrait" />
         <activity android:name=".activities.LegendCross" android:screenOrientation="portrait" />
+        <activity android:name=".activities.OmegaAttack" android:screenOrientation="portrait" />
         <activity android:name=".activities.OtherMedal" android:screenOrientation="portrait" />
     </application>
     
